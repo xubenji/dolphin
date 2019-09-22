@@ -4,8 +4,11 @@
 #You can use this script to init the basic build tools
 #I recommd you use a clean Ubuntu 18.
 #This script build OVMF.fd by default.
-#If you don't want to build the OVMF.fd module, you have the OVMF.fd and you know how to run qemu with OVFM.fd. 
+#If you don't want to build the OVMF.fd module, you have the OVMF.fd and you know how to run qemu with OVFM.fd.
+#You can run script like this
+#>:bash bash BuildToolsInit.sh -noovmf
 #if you want to build all. You can run script like this: bash BuildToolsInit.sh
+
 
 NOOVMF=0
 echo
@@ -19,7 +22,7 @@ do
 		 apt-get remove gcc -y
 		 str=$(gcc --version)
 		 done ;;
-		-withoutovmf) NOOVMF=1 ;;
+		-noovmf) NOOVMF=1 ;;
         *) echo "$1 is not an option" 
 	   exit ;;
     esac
@@ -47,7 +50,6 @@ git clone https://gitee.com/dolphinos/edk2.git
 
 #enter the work directory. preparing the build base tools of edk2
 cd edk2
-export WORKSPACE=`pwd`
 git checkout UDK2015
 rm ./BaseTools/Source/C/VfrCompile/VfrUtilityLib.cpp
 cp ../ToolSource/VfrUtilityLib.cpp ./BaseTools/Source/C/VfrCompile/

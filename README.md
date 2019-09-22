@@ -11,4 +11,7 @@
 	You can run this script like this: 
 	>:bash BuildToolsInit.sh
 	This script build OVMF.fd by default.
+	If you don't want to build the OVMF.fd module, you have the OVMF.fd and you know how to run qemu with OVFM.fd.
+	You can run script like this
+	>:bash bash BuildToolsInit.sh -noovmf
 =======
