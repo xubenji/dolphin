@@ -7,7 +7,7 @@
 #If you don't want to build the OVMF.fd module, you have the OVMF.fd and you know how to run qemu with OVFM.fd. 
 #if you want to build all. You can run script like this: bash BuildToolsInit.sh
 
-
+NOOVMF=0
 echo
 while [ -n "$1" ]
 do
@@ -19,7 +19,7 @@ do
 		 apt-get remove gcc -y
 		 str=$(gcc --version)
 		 done ;;
-	withoutovmf) echo "You will not compile ovmf" ;;
+		-withoutovmf) NOOVMF=1 ;;
         *) echo "$1 is not an option" 
 	   exit ;;
     esac
@@ -62,12 +62,17 @@ sudo update-alternatives --config gcc
 gcc -v
 
 #compile the OVMF.fd
+if [ $NOOVMF -eq 0 ];then
 rm Conf/target.txt
 cp ../ToolSource/target.txt Conf/target.txt
 BaseTools/BuildEnv 
 . ./edksetup.sh
 script -a "../output.ovmf" -c "build" 
-cp ./Build/OvmfX64/DEBUG_GCC48/FV/OVMF.fd ../ovmf/
+	if [ ! -d "../ovmf" ];then
+	mkdir ../ovmf
+	fi
+cp ./Build/OvmfX64/DEBUG_GCC48/FV/OVMF.fd ../ovmf
+fi
 
 #Check if the compilation is successful
 grep "tests in" ../output.tools >/dev/null
