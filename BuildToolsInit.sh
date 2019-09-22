@@ -82,7 +82,7 @@ if [ $? -eq 0 ]; then
     echo -e "[\033[32m Build base tools success \033[0m]"
 else
     echo -e "[\033[31m Build base tools failed \033[0m]"
-    echo    "f" > failed.txt
+    echo    "f" > ../failed.txt
 fi 
 if [ -f "../output.ovmf" ]; then
 grep "\- Done \-" ../output.ovmf >/dev/null
@@ -90,13 +90,15 @@ grep "\- Done \-" ../output.ovmf >/dev/null
    	 	echo -e "[\033[32m Build OVMF.fd success \033[0m]"
 	else
     		echo -e "[\033[31m Build OVMF.fd failed \033[0m]"
-    		echo    "f" > failed.txt
+    		echo    "f" > ../failed.txt
 	fi
 fi
 if [ -f "../failed.txt" ]; then
 grep "f" ../failed.txt >/dev/null
 	if [ $? -eq 0 ]; then
-   		 echo -e "\033[33mDo you want to repair this error, you can run script like this: bash BuildToolsInit.sh -repair \033[0m"
+   		 echo -e "\033[33mDo you want to repair this error, you can run script like this:"
+		 echo -e "\033[33m>:bash BuildToolsInit.sh -repair \033[0m""
+
 	fi
 fi
 
