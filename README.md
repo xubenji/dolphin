@@ -7,7 +7,7 @@
 	Frist of all, You need clone dolphin.git like this:
 	>:git clone https://github.com/xubenji/dolphin.git
 	Then, you need go to the work directory.
-	>:cd dolphinos/dolphin
+	>:cd dolphin
 	You can run this script like this: 
 	>:bash BuildToolsInit.sh
 	This script build OVMF.fd by default.
