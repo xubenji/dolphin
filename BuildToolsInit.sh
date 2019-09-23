@@ -11,23 +11,50 @@
 
 
 NOOVMF=0
+NODOCER=0
+
 echo
 while [ -n "$1" ]
 do
     case "$1" in
-        -repair) rm -r -f edk2 
+	-nodocker) NODOCER=1 ;;
+        -repair) NODOCER=1
+		 rm -r -f edk2 
+		 mv /etc/apt/sources.list /etc/apt/sources.bak
+		 cp ./ToolSource/sources.list /etc/apt/sources.list
 		 str=$(gcc --version)
 		 while [[ $str =~ "gcc" ]]
 		 do 
 		 apt-get remove gcc -y
 		 str=$(gcc --version)
 		 done ;;
-		-noovmf) NOOVMF=1 ;;
+	-noovmf) NOOVMF=1 ;;
         *) echo "$1 is not an option" 
 	   exit ;;
     esac
     shift
 done
+
+#check if the program in docker
+if [ $NODOCER -eq 0 ];then
+	sudo apt-get install docker.io
+	#docker pull 1and1internet/ubuntu-16-nginx-php-7.0  
+	PWD=`pwd`
+	echo $PWD
+	docker run -it -v $PWD:/dolphin ubuntu bash /dolphin/BuildToolsInit.sh -nodocker
+	exit
+fi
+
+#clear the build envirment of docker ubuntu
+cd /dolphin 
+rm -r -f edk2 ovmf
+apt-get update
+
+#install sudo 
+apt-get install sudo
+
+#install make
+sudo apt-get install make
 
 #install gcc
 sudo apt-get -y install gcc
@@ -97,7 +124,7 @@ if [ -f "../failed.txt" ]; then
 grep "f" ../failed.txt >/dev/null
 	if [ $? -eq 0 ]; then
    		 echo -e "\033[33mDo you want to repair this error, you can run script like this:"
-		 echo -e "\033[33m>:bash BuildToolsInit.sh -repair \033[0m""
+		 echo -e "\033[33m>:bash BuildToolsInit.sh -repair \033[0m"
 
 	fi
 fi
@@ -105,3 +132,5 @@ fi
 rm -f ../failed.txt
 rm -f ../output.tools
 rm -f ../output.ovmf
+
+exit
