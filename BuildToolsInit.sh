@@ -8,6 +8,8 @@
 #You can run script like this
 #>:bash bash BuildToolsInit.sh -noovmf
 #if you want to build all. You can run script like this: bash BuildToolsInit.sh
+#if you want to complie the edk2 basetools using your physical machine. you can run this script like this 
+#>:bash BuildToolsInit.sh -nodocker
 
 
 NOOVMF=0
