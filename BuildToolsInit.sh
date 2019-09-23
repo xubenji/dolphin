@@ -24,7 +24,7 @@ do
 		 str=$(gcc --version)
 		 while [[ $str =~ "gcc" ]]
 		 do 
-		 sudo yum install -y gcc
+		 sudo yum remove -y gcc
 		 sudo apt-get remove gcc -y
 		 str=$(gcc --version)
 		 done ;;
@@ -37,7 +37,7 @@ done
 
 #check if the program in docker
 if [ $NODOCER -eq 0 ];then
-	sudo apt-get install docker.io
+	sudo apt-get install docker.io -y
 
 	#install application for CentOS-like system
 	sudo yum install -y yum-utils device-mapper-persistent-data lvm2 
