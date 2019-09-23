@@ -40,10 +40,10 @@ if [ $NODOCER -eq 0 ];then
 
 	#install application for CentOS-like system
 	sudo yum install -y yum-utils device-mapper-persistent-data lvm2 >/etc/null
-	sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo >/etc/null
-	sudo yum makecache fast >/etc/null
-	sudo yum -y install docker-ce >/etc/null
+	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo >/etc/null
+	sudo yum install docker-ce-17.12.1.ce >/etc/null
 	sudo systemctl start docker >/etc/null
+	sudo systemctl status docker >/etc/null
 
 	docker pull ubuntu 
 	PWD=`pwd`
