@@ -60,10 +60,10 @@ cd /dolphin
 apt-get update
 
 #install sudo 
-apt-get install sudo
+apt-get install sudo -y
 
 #install make
-sudo apt-get install make
+sudo apt-get install make -y
 
 #install gcc
 sudo apt-get -y install gcc
