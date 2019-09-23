@@ -39,12 +39,13 @@ if [ $NODOCER -eq 0 ];then
 	sudo apt-get install docker.io
 
 	#install application for CentOS-like system
-	sudo yum install -y yum-utils device-mapper-persistent-data lvm2 >/etc/null
-	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo >/etc/null
-	sudo yum install docker-ce-17.12.1.ce >/etc/null
-	sudo systemctl start docker >/etc/null
-	sudo systemctl status docker >/etc/null
-
+	sudo yum install -y yum-utils device-mapper-persistent-data lvm2 
+	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
+	sudo yum install docker-ce-17.12.1.ce 
+	sudo systemctl start docker 
+	sudo systemctl status docker 
+	
+	echo "install the application please waite mins."
 	docker pull ubuntu 
 	PWD=`pwd`
 	echo $PWD
