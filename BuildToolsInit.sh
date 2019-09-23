@@ -18,8 +18,7 @@ while [ -n "$1" ]
 do
     case "$1" in
 	-nodocker) NODOCER=1 ;;
-        -repair) NODOCER=1
-		 rm -r -f edk2 
+        -repair) rm -r -f edk2 
 		 mv /etc/apt/sources.list /etc/apt/sources.bak
 		 cp ./ToolSource/sources.list /etc/apt/sources.list
 		 str=$(gcc --version)
@@ -38,7 +37,15 @@ done
 #check if the program in docker
 if [ $NODOCER -eq 0 ];then
 	sudo apt-get install docker.io
-	#docker pull 1and1internet/ubuntu-16-nginx-php-7.0  
+
+	#install application for CentOS-like system
+	sudo yum install -y yum-utils device-mapper-persistent-data lvm2 >/etc/null
+	sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo >/etc/null
+	sudo yum makecache fast >/etc/null
+	sudo yum -y install docker-ce >/etc/null
+	sudo systemctl start docker >/etc/null
+
+	docker pull ubuntu 
 	PWD=`pwd`
 	echo $PWD
 	docker run -it -v $PWD:/dolphin ubuntu bash /dolphin/BuildToolsInit.sh -nodocker
@@ -47,7 +54,6 @@ fi
 
 #clear the build envirment of docker ubuntu
 cd /dolphin 
-rm -r -f edk2 ovmf
 apt-get update
 
 #install sudo 
