@@ -24,7 +24,8 @@ do
 		 str=$(gcc --version)
 		 while [[ $str =~ "gcc" ]]
 		 do 
-		 apt-get remove gcc -y
+		 sudo yum install -y gcc
+		 sudo apt-get remove gcc -y
 		 str=$(gcc --version)
 		 done ;;
 	-noovmf) NOOVMF=1 ;;
@@ -130,7 +131,7 @@ fi
 if [ -f "../failed.txt" ]; then
 grep "f" ../failed.txt >/dev/null
 	if [ $? -eq 0 ]; then
-   		 echo -e "\033[33mIf you using the ubuntu and you want to repair this error, you can run script like this:"
+   		 echo -e "\033[33mDo you want to repair this error, you can run script like this:"
 		 echo -e "\033[33m>:bash BuildToolsInit.sh -repair \033[0m"
 
 	fi
