@@ -44,7 +44,6 @@ if [ $NODOCER -eq 0 ];then
 	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
 	sudo yum install docker-ce-17.12.1.ce -y
 	sudo systemctl start docker 
-	sudo systemctl status docker 
 	
 	echo "install the application please waite mins."
 	docker pull ubuntu 
