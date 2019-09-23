@@ -41,7 +41,7 @@ if [ $NODOCER -eq 0 ];then
 	#install application for CentOS-like system
 	sudo yum install -y yum-utils device-mapper-persistent-data lvm2 
 	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
-	sudo yum install docker-ce-17.12.1.ce 
+	sudo yum install docker-ce-17.12.1.ce -y
 	sudo systemctl start docker 
 	sudo systemctl status docker 
 	
