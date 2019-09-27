@@ -9,6 +9,7 @@
 #if you want to build all. You can run script like this: bash BuildToolsInit.sh
 #if you want to complie the edk2 basetools using your physical machine. you can run this script like this 
 #>:bash BuildToolsInit.sh -nodocker
+<<<<<<< HEAD
 
 NOOVMF=0
 NOBOCHS=0
@@ -16,12 +17,22 @@ BOCHSDEBUGGER=0
 BOCHSGDB=0
 NOEDK=1
 NODOCKER=0
+=======
+
+
+NOOVMF=0
+NODOCER=0
+>>>>>>> e28a1b1d473940d4653dbbf6338487a7bd7a00ad
 
 echo
 while [ -n "$1" ]
 do	
     case "$1" in
+<<<<<<< HEAD
 	-nodocker) NODOCKER=1 ;;
+=======
+	-nodocker) NODOCER=1 ;;
+>>>>>>> e28a1b1d473940d4653dbbf6338487a7bd7a00ad
         -repair) rm -r -f edk2 
 		 mv /etc/apt/sources.list /etc/apt/sources.bak
 		 cp ./ToolSource/sources.list /etc/apt/sources.list
@@ -32,6 +43,10 @@ do
 		 sudo apt-get remove gcc -y
 		 str=$(gcc --version)
 		 done ;;
+<<<<<<< HEAD
+=======
+	-noovmf) NOOVMF=1 ;;
+>>>>>>> e28a1b1d473940d4653dbbf6338487a7bd7a00ad
         *) echo "$1 is not an option" 
 	   exit ;;
     esac
@@ -39,7 +54,11 @@ do
 done
 
 #check if the program in docker
+<<<<<<< HEAD
 if [ $NODOCKER -eq 0 ];then
+=======
+if [ $NODOCER -eq 0 ];then
+>>>>>>> e28a1b1d473940d4653dbbf6338487a7bd7a00ad
 	sudo apt-get install docker.io -y
 
 	#install application for CentOS-like system
@@ -58,6 +77,7 @@ fi
 
 #clear the build envirment of docker ubuntu
 cd /dolphin 
+<<<<<<< HEAD
 cp ./ToolSource/sources.list /etc/apt/sources.list
 apt-get update
 
@@ -91,6 +111,10 @@ pwd
 
 if [ $NOEDK -eq 0 ];then
 cd /dolphin
+=======
+apt-get update
+
+>>>>>>> e28a1b1d473940d4653dbbf6338487a7bd7a00ad
 #install sudo 
 apt-get install sudo -y
 
@@ -188,6 +212,9 @@ fi
 rm -f ../failed.txt
 rm -f ../output.tools
 rm -f ../output.ovmf
+<<<<<<< HEAD
 rm -f ../output.bochs
+=======
+>>>>>>> e28a1b1d473940d4653dbbf6338487a7bd7a00ad
 
 exit
