@@ -8,6 +8,7 @@
 	>:git clone https://github.com/xubenji/dolphin.git
 	Then, you need go to the work directory.
 	>:cd dolphin
+	You need to change to root.
 	You can run this script like this: 
 	>:bash BuildToolsInit.sh
 	This script build OVMF.fd by default.
