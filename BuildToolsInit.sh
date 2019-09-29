@@ -37,11 +37,11 @@
 #>:bash BuildToolsInit.sh -nodocker
 #Good lock!
 
-BOCHS=0
+BOCHS=1
 BOCHSDEBUGGER=0
 BOCHSGDB=0
 
-EDK=0
+EDK=1
 OVMF=1
 
 DOCKER=1
@@ -51,8 +51,6 @@ do
     case "$1" in
 	-nodocker) DOCKER=0 ;;
         -repair) rm -r -f edk2 
-		 mv /etc/apt/sources.list /etc/apt/sources.bak
-		 cp ./ToolSource/sources.list /etc/apt/sources.list
 		 str=$(gcc --version)
 		 while [[ $str =~ "gcc" ]]
 		 do 
@@ -192,7 +190,6 @@ grep "\- Done \-" ../output.ovmf >/dev/null
 fi
 fi
 if [ $BOCHS -eq 1 ]; then
-pwd
 grep "g++ \-o bxcommit \-g \-O2 \-D_FILE_OFFSET_BITS=64 \-D_LARGE_FILES -pthread \-fPIC misc/bxcommit.o" ../output.bochs >/dev/null
 	if [ $? -eq 0 ]; then
    	 	echo -e "[\033[32m Build bochs success \033[0m]"
@@ -216,6 +213,6 @@ rm -f ../failed.txt
 rm -f ../output.tools
 rm -f ../output.ovmf
 rm -f ../output.bochs
-rm bochs_2* -f
+rm -f ../bochs_2*
 
 exit
