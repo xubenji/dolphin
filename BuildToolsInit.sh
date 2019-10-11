@@ -43,8 +43,8 @@ BOCHS=1
 BOCHSDEBUGGER=0
 BOCHSGDB=0
 
-EDK=1
-OVMF=1
+EDK=0
+OVMF=0
 
 DOCKER=1
 
@@ -61,7 +61,7 @@ do
 		 str=$(gcc --version)
 		 done ;;
 	-clean) rm -r -f edk2
-		rm -r -f bochs-*
+		rm -r -f bochs*
 		rm -r -f ovmf 
 		exit ;;
         *) echo "$1 is not an option" 
@@ -116,8 +116,8 @@ script -a "../output.bochs" -c "make"
 cp ../ToolSource/BIOS-* ./bios/
 cp ../ToolSource/VGABIOS-* ./bios/
 cd ..
+
 fi
-pwd
 
 if [ $EDK -eq 1 ];then
 #install sudo 
