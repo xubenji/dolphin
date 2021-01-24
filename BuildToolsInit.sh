@@ -103,9 +103,13 @@ sudo apt-get install xorg-dev -y
 sudo apt-get install libgtk2.0-dev -y
 rm boch* -f
 rm boch* -r -f 
-apt-get source bochs -y
-rm bochs-2.* -r -f
-tar -vxf bochs_2.*.or*
+git clone https://gitee.com/dolphinos/bochs.git
+cp ./bochs/bochs-2.6.9.tar.gz ./
+#apt-get source bochs -y
+#rm bochs-2.* -r -f
+rm -r bochs
+#tar -vxf bochs_2.*.or*
+tar -zxvf bochs-2.6.9.tar.gz
 cd bochs-2.*
 ./configure --enable-debugger --enable-disasm
 cp ../ToolSource/Makefile.bochsdebugger ./Makefile
