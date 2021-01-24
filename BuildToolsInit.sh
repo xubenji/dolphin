@@ -91,6 +91,7 @@ fi
 pwd
 cp ./ToolSource/sources.list /etc/apt/sources.list
 apt-get update
+apt-get upgrade
 
 
 #install bochs with debugger
