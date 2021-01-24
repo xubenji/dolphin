@@ -81,7 +81,7 @@ if [ $DOCKER -eq 1 ];then
 	sudo systemctl start docker 
 	
 	echo "install the application please waite mins."
-	docker pull ubuntu 
+	docker pull ubuntu:18.04 
 	PWD=`pwd`
 	docker run -it -w $PWD -v $PWD:$PWD ubuntu bash $PWD/BuildToolsInit.sh -nodocker
 	exit
