@@ -89,9 +89,9 @@ fi
 
 #clear the build envirment of docker ubuntu
 pwd
-cp ./ToolSource/sources.list /etc/apt/sources.list
-apt-get update
-apt-get upgrade
+#cp ./ToolSource/sources.list /etc/apt/sources.list
+#apt-get update
+#apt-get upgrade
 
 
 #install bochs with debugger
