@@ -97,11 +97,11 @@ pwd
 #install bochs with debugger
 if [ $BOCHS -eq 1 ];then
 apt-get install sudo -y
-sudo apt-get install dpkg-dev -y
-sudo apt-get -y install gcc
+apt-get install dpkg-dev -y
+apt-get -y install gcc
 #sudo apt-get -y install g++
-sudo apt-get install xorg-dev -y
-sudo apt-get install libgtk2.0-dev -y
+apt-get install xorg-dev -y
+apt-get install libgtk2.0-dev -y
 rm boch* -f
 rm boch* -r -f 
 git clone https://gitee.com/dolphinos/bochs.git
